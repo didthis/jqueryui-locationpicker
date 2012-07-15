@@ -43,7 +43,7 @@ $.widget("ui.locationpicker", {
 			},
 			select: function(event, ui) {
 				var item = ui.item.item;
-				setMarker(item.longitude, item.latitude);
+				setMarker(item.lng, item.lat);
 				searchElement.autocomplete("option", locationSearch);
 				self._trigger("selected", event, { item: item });
 			}
