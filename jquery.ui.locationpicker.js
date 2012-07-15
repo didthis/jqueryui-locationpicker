@@ -18,13 +18,15 @@ $.widget("ui.locationpicker", {
 		var locationSearch = {
 			source: function(request, response) {
 				$.ajax({
-					url: "http://localhost:8082/location/",
-					dataType: "json",
+					url: "http://ws.geonames.org/search",
+					dataType: "jsonp",
 					data: {
-						query: request.term
+						q: request.term,
+						type: "json",
+						maxRows: 10
 					},
 					success: function(data) {
-						response($.map(data, function(item) {
+						response($.map(data["geonames"], function(item) {
 							return {
 								label: item.name,
 								value: item.name,
@@ -78,16 +80,18 @@ $.widget("ui.locationpicker", {
 			longitude = point.longitude,
 			latitude = point.latitude;
 			$.ajax({
-				url: "http://localhost:8082/location/",
-				dataType: "json",
+				url: "http://ws.geonames.org/findNearbyPlaceName",
+				dataType: "jsonp",
 				data: {
-					longitude: longitude,
-					latitude: latitude
+					lng: longitude,
+					lat: latitude,
+					type: "json",
+					radius: "10"
 				},
 				success: function(data) {
 					var choices = searchElement.autocomplete("widget");
 					choices.empty();
-					searchElement.autocomplete("option", "source", $.map(data, function(item) {
+					searchElement.autocomplete("option", "source", $.map(data["geonames"], function(item) {
 						return {
 							label: item.name,
 							value: item.name,
