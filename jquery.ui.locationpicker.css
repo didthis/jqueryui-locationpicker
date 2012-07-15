@@ -1,0 +1,19 @@
+.hasLocationpicker {
+	width: 256px;
+}
+.hasLocationpicker .ui-locationpicker-search {
+	width: 100%;
+}
+.hasLocationpicker .ui-locationpicker-map {
+	width: 100%;
+	height: 256px; 
+	border: 1px solid #DDD;
+	box-shadow: #AAA 0px 0px 15px;
+}
+.hasLocationpicker .ui-locationpicker-map .olControlAttribution {
+	bottom: 5px;
+}
+.hasLocationpicker .ui-locationpicker-map .olControlAttribution a[href] {
+    color: #436976;
+    background-color: transparent;
+}
